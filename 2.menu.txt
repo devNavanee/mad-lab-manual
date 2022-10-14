@@ -1,0 +1,94 @@
+2.Menu Application 
+Aim 
+ To create a android application that dispalys menu. 
+Algorithm 
+Step 1 : Open Android Studio and then click on File -> New -> New project. Step 2: Then type the Application name as “menuapp″ and click Next. Step 3: Then select the Empty Activity and click Next. 
+Step 4: Finally click Finish.
+Step 5: Click on app -> res -> layout -> activity_main.xml. 
+Step 6: Now click on code Then delete the code which is there and type the new code that  designs the front end of your application. 
+Step 7: Click on app -> res. Then right click on res and Click on New-> Android Resource File. 
+Step 8: Type “menu” in filename and select resource type as menu and then click Ok. Step 9: Then write the code in menu.xml file that creates menu. 
+Step 7: Click on app -> java -> com.example.menuapp -> MainActivity. Step 8: Then delete the code which is there and type the new code 
+Step 9: Now run the application to see the output. 
+Source Code 
+activity_main.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<androidx.constraintlayout.widget.ConstraintLayout  
+xmlns:android="http://schemas.android.com/apk/res/android" 
+ xmlns:app="http://schemas.android.com/apk/res-auto" 
+ xmlns:tools="http://schemas.android.com/tools" 
+ android:layout_width="match_parent" 
+ android:layout_height="match_parent" 
+ tools:context=".MainActivity"/> 
+menu.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<menu xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:app="http://schemas.android.com/apk/res-auto"> 
+ <item android:id="@+id/more" 
+ android:title="" 
+ android:icon="@drawable/ic_baseline_read_more_24" 
+ app:showAsAction="always"> 
+ <menu> 
+ <item android:id="@+id/settings" 
+ android:title="Settings" 
+ app:showAsAction="ifRoom"> 
+ <menu> 
+ <item android:id="@+id/Account" 
+ android:title="Account" 
+ app:showAsAction="ifRoom"></item> 
+ <item android:id="@+id/Help" 
+ android:title="Help" 
+ app:showAsAction="ifRoom"></item>
+ </menu> 
+ </item> 
+ <item android:id="@+id/Download" 
+ android:title="Download" 
+ app:showAsAction="ifRoom"></item> 
+ <item android:id="@+id/Logout" 
+ android:title="Logout" 
+ app:showAsAction="ifRoom"></item> 
+ </menu> 
+ </item> 
+</menu> 
+MainActivity.java 
+package com.example.menuapp; 
+import androidx.annotation.NonNull; 
+import androidx.appcompat.app.AppCompatActivity; 
+import android.os.Bundle; 
+import android.view.Menu; 
+import android.view.MenuInflater; 
+import android.view.MenuItem; 
+import android.widget.Toast; 
+public class MainActivity extends AppCompatActivity { 
+@Override 
+protected void onCreate(Bundle savedInstanceState) { 
+super.onCreate(savedInstanceState); 
+setContentView(R.layout.activity_main); 
+} 
+@Override 
+public boolean onOptionsItemSelected(@NonNull MenuItem item) { switch(item.getItemId()) 
+{ 
+case R.id.Download: 
+  
+Toast.makeText(MainActivity.this,"Downloading!...",Toast.LENGTH_LONG).sho W(); 
+return true; 
+case R.id.Logout: 
+Toast.makeText(MainActivity.this,"LogingOut",Toast.LENGTH_LONG).show(); return true; 
+  
+ case R.id.Account: 
+ Toast.makeText(MainActivity.this,"Dedirecting to Account  
+Page!...",Toast.LENGTH_LONG).show(); 
+ return true; 
+ case R.id.Help: 
+ Toast.makeText(MainActivity.this,"Dedirecting to Help  
+Page!...",Toast.LENGTH_LONG).show(); 
+ return true;
+ default: 
+ return super.onOptionsItemSelected(item); 
+ } 
+ } 
+ @Override 
+ public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {  MenuInflater inflater=getMenuInflater(); 
+ inflater.inflate(R.menu.menu,menu); 
+ return true; 
+ } 
+} 

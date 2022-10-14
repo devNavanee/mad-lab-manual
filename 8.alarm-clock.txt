@@ -1,0 +1,89 @@
+8.Alarm Clock 
+Aim 
+ To develop a simple android application that create an alarm clock. 
+Algorithm 
+Step 1 : Open Android Studio and then click on File -> New -> New project. Step 2: Then type the Application name as “alarmapplication″ and click Next. Step 3: Then select the Empty Activity and click Next. 
+Step 4: Finally click Finish. 
+Step 5: Click on app -> res -> layout -> activity_main.xml. 
+Step 6: Now click on code Then delete the code which is there and type the new code that  designs the alarm clock.
+Step 7: Click on app -> java -> com.example.alarmapplication -> MainActivity. Step 8: Then delete the code which is there and type the new code that runs the alarm clock. Step 9: Now run the application to see the output. 
+Source Code 
+activity_main.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  xmlns:app="http://schemas.android.com/apk/res-auto" 
+ xmlns:tools="http://schemas.android.com/tools" 
+ android:layout_width="match_parent" 
+ android:layout_height="match_parent" 
+ android:orientation="vertical" 
+ tools:context=".MainActivity"> 
+ <TimePicker 
+ android:id="@+id/TimePicker" 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content"></TimePicker> 
+ <TextClock 
+ android:id="@+id/TextClock" 
+ android:layout_width="match_parent" 
+ android:layout_height="100sp" 
+ android:textAlignment="center" 
+ android:textColor="#01DCC7" 
+ android:textSize="35sp" 
+ android:textStyle="bold"></TextClock> 
+</LinearLayout> 
+MainActivity.java 
+package com.example.alarmapplication; 
+import androidx.appcompat.app.AppCompatActivity; 
+import android.media.Ringtone; 
+import android.media.RingtoneManager; 
+import android.os.Bundle; 
+import android.widget.TextClock; 
+import android.widget.TimePicker; 
+import java.util.Timer; 
+import java.util.TimerTask; 
+public class MainActivity extends AppCompatActivity {
+ TimePicker alarmtime; 
+ TextClock currentTime; 
+ @Override 
+ protected void onCreate(Bundle savedInstanceState) { 
+ super.onCreate(savedInstanceState); 
+ setContentView(R.layout.activity_main); 
+ alarmtime=findViewById(R.id.TimePicker); 
+ currentTime=findViewById(R.id.TextClock); 
+ final Ringtone r=  
+RingtoneManager.getRingtone(getApplicationContext(),RingtoneManager.getDefaultUri(Rin gtoneManager.TYPE_RINGTONE)); 
+ Timer t=new Timer(); 
+ t.scheduleAtFixedRate(new TimerTask() { 
+ @Override 
+ public void run() { 
+ if(currentTime.getText().toString().equals(Alarmtime())) { 
+ r.play(); 
+ } 
+ else { 
+ r.stop(); 
+ } 
+ } 
+ },0,1000); 
+ } 
+ public String Alarmtime() 
+ { 
+ Integer alarmhour=alarmtime.getCurrentHour(); 
+ Integer alarmminute=alarmtime.getCurrentMinute(); 
+ String alarmmin="0"; 
+ String stringalarmtime; 
+ if(alarmminute<10) 
+ { 
+ alarmmin=alarmmin.concat(alarmminute.toString()); 
+ } 
+ else 
+ { 
+ alarmmin=alarmminute.toString(); 
+ } 
+ if(alarmhour>12) 
+ { 
+ alarmhour-=12; 
+ stringalarmtime=alarmhour.toString().concat(":").concat(alarmmin).concat(" PM");  } 
+ else 
+ { 
+ stringalarmtime=alarmhour.toString().concat(":").concat(alarmmin).concat(" AM");  } 
+ return stringalarmtime; 
+ } 
+}

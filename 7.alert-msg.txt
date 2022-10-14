@@ -1,0 +1,60 @@
+7.Alert Message 
+Aim 
+ To develop a simple android application that displays alert message. 
+Algorithm 
+Step 1 : Open Android Studio and then click on File -> New -> New project. Step 2: Then type the Application name as “alertapplication″ and click Next.
+Step 3: Then select the Empty Activity and click Next. 
+Step 4: Finally click Finish. 
+Step 5: Click on app -> res -> layout -> activity_main.xml. 
+Step 6: Now click on code Then delete the code which is there and type the new code that  designs the front end of your application. 
+Step 7: Click on app -> java -> com.example.alertapplication -> MainActivity. 
+Step 8: Then delete the code which is there and type the new code that displays alert  message. 
+Step 9: Now run the application to see the output. 
+Source Code 
+activity_main.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<androidx.constraintlayout.widget.ConstraintLayout  
+xmlns:android="http://schemas.android.com/apk/res/android" 
+ xmlns:app="http://schemas.android.com/apk/res-auto" 
+ xmlns:tools="http://schemas.android.com/tools" 
+ android:layout_width="match_parent" 
+ android:layout_height="match_parent" 
+ tools:context=".MainActivity"> 
+ <TextView 
+ android:layout_width="wrap_content" 
+ android:layout_height="wrap_content" 
+ android:text="Welcome to Alert Meassge Application!..." 
+ android:textColor="#3F51B5" 
+ android:textSize="20sp" 
+ android:textStyle="bold" 
+ app:layout_constraintBottom_toBottomOf="parent" 
+ app:layout_constraintLeft_toLeftOf="parent" 
+ app:layout_constraintRight_toRightOf="parent" 
+ app:layout_constraintTop_toTopOf="parent" /> 
+</androidx.constraintlayout.widget.ConstraintLayout> 
+MainActivity.java 
+package com.example.alertapplication; 
+import androidx.appcompat.app.AppCompatActivity; 
+import android.app.AlertDialog; 
+import android.app.Dialog;
+import android.content.DialogInterface; 
+import android.os.Bundle; 
+public class MainActivity extends AppCompatActivity { 
+ @Override 
+ protected void onCreate(Bundle savedInstanceState) { 
+ super.onCreate(savedInstanceState); 
+ setContentView(R.layout.activity_main); 
+ } 
+ @Override 
+ public void onBackPressed() { 
+ AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);  builder.setTitle("Alert!"); 
+ builder.setMessage("Are you sure want to exit?.."); 
+ builder.setCancelable(false); 
+ builder.setNegativeButton("Yes", (DialogInterface.OnClickListener)(dialog,which)->{  finish(); 
+ }); 
+ builder.setPositiveButton("No",(DialogInterface.OnClickListener)(dialog,which)->{  dialog.cancel(); 
+ }); 
+ AlertDialog alert=builder.create(); 
+ alert.show(); 
+ } 
+} 

@@ -1,0 +1,83 @@
+10.Navigation Page
+Aim 
+ To develop a simple android application that uses Navigation drawer. 
+Algorithm 
+Step 1 : Open Android Studio and then click on File -> New -> New project. Step 2: Then type the Application name as “navigationdrawer″ and click Next. Step 3: Then select the Empty Activity and click Next. 
+Step 4: Finally click Finish. 
+Step 5: Click on app -> res -> layout -> activity_main.xml. 
+Step 6: Now click on code Then delete the code which is there and type the new code that  designs the front end of your application. 
+Step 7: Click on app -> res. Then right click on res and Click on New-> Android Resource File. 
+Step 8: Type “menu” in filename and select resource type as menu and then click Ok. Step 9: Then write the code in menu.xml file that creates menu. 
+Step 10: Click on app -> res -> values -> strings.xml. Then set names for navigation open  and navigation close. 
+Step 7: Click on app -> java -> com.example.navigationdrawer -> MainActivity. Step 8: Then delete the code which is there and type the new code 
+Step 9: Now run the application to see the output. 
+Source Code 
+activity_main.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<androidx.drawerlayout.widget.DrawerLayout 
+ xmlns:android="http://schemas.android.com/apk/res/android" 
+ xmlns:app="http://schemas.android.com/apk/res-auto" 
+ xmlns:tools="http://schemas.android.com/tools" 
+ android:id="@+id/my_drawer_layout" 
+ android:layout_width="match_parent" 
+ android:layout_height="match_parent" 
+ tools:context=".MainActivity" 
+ tools:ignore="HardcodedText"> 
+ <LinearLayout 
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"> 
+ <TextView 
+ android:layout_width="match_parent" 
+ android:layout_height="wrap_content" 
+ android:layout_marginTop="128dp" 
+ android:gravity="center" 
+ android:text="Welcome to Navigation Drawer"  android:textColor="#2196F3" 
+ android:textSize="25sp" 
+ android:textStyle="bold" /> 
+ </LinearLayout> 
+ <com.google.android.material.navigation.NavigationView  android:layout_width="wrap_content" 
+ android:layout_height="match_parent" 
+ android:layout_gravity="start" 
+ app:menu="@menu/menu" /> 
+</androidx.drawerlayout.widget.DrawerLayout> 
+string.xml 
+<resources> 
+ <string name="app_name">Navigation Drawer</string>  <string name="nav_open">Open</string> 
+ <string name="nav_close">Close</string> 
+</resources> 
+menu.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<menu xmlns:android="http://schemas.android.com/apk/res/android"> <item android:id="@+id/nav_Account" 
+ android:title="Account"></item> 
+ <item android:id="@+id/nav_settings" 
+ android:title="Settings"></item> 
+ <item android:id="@+id/nav_Logout" 
+ android:title="Log out"></item> 
+</menu> 
+MainActivity.java 
+package com.example.navigationdrawer; 
+import androidx.annotation.NonNull; 
+import androidx.appcompat.app.ActionBarDrawerToggle; import androidx.appcompat.app.AppCompatActivity; import androidx.drawerlayout.widget.DrawerLayout; import android.os.Bundle; 
+import android.view.MenuItem;
+import android.widget.Toast; 
+public class MainActivity extends AppCompatActivity { 
+ private DrawerLayout drawerlayout; 
+ private ActionBarDrawerToggle actionbardrawertoggle; 
+ @Override 
+ protected void onCreate(Bundle savedInstanceState) { 
+ super.onCreate(savedInstanceState); 
+ setContentView(R.layout.activity_main); 
+ drawerlayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);  actionbardrawertoggle = new ActionBarDrawerToggle(MainActivity.this, drawerlayout,  R.string.nav_open, R.string.nav_close); 
+ drawerlayout.addDrawerListener(actionbardrawertoggle); 
+ actionbardrawertoggle.syncState(); 
+ getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
+ } 
+ @Override 
+ public boolean onOptionsItemSelected(@NonNull MenuItem item) {  if(actionbardrawertoggle.onOptionsItemSelected(item)) { 
+ return true; 
+ } 
+ else { 
+ return super.onOptionsItemSelected(item); 
+ } 
+ } 
+} 
